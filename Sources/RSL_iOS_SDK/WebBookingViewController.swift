@@ -21,8 +21,8 @@ public class WebBookingViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        //self.setupNavBar()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.setupNavBar()
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.addWebview()
     }
     
@@ -62,7 +62,17 @@ public class WebBookingViewController: UIViewController {
         let viewBack = UIView()
         self.view.backgroundColor = .white
         viewBack.backgroundColor = .white
-        viewBack.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        viewBack.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(viewBack)
+        
+        NSLayoutConstraint.activate([
+            viewBack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            viewBack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            viewBack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            viewBack.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        
+        //viewBack.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         
         self.webView = WKWebView(frame: CGRect.zero, configuration: configuration)
         self.webView.frame = CGRect(x: 0, y: 0, width: viewBack.bounds.width, height: viewBack.bounds.height)
@@ -81,7 +91,7 @@ public class WebBookingViewController: UIViewController {
         self.webView.scrollView.minimumZoomScale = 1.0;
         self.webView.scrollView.maximumZoomScale = 1.0;
         viewBack.addSubview(self.webView)
-        self.view.addSubview(viewBack)
+        
     }
     
     @objc func loadWebView() {
