@@ -21,7 +21,8 @@ public class WebBookingViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupNavBar()
+        //self.setupNavBar()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.addWebview()
     }
     
