@@ -21,7 +21,8 @@ public class WebBookingViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupNavBar()
+        //self.setupNavBar()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.addWebview()
     }
     
@@ -146,6 +147,10 @@ extension WebBookingViewController : WKNavigationDelegate, WKUIDelegate, UIScrol
             decisionHandler(.cancel)
             self.navigationController?.popViewController(animated: true)
             self.delegate?.bookingSuccess(tripId: tripId ?? "", message: msg ?? "Booking success")
+        }
+        else if (url.absoluteString.contains("go_home")) {
+            decisionHandler(.cancel)
+            self.navigationController?.popViewController(animated: true)
         }
         else {
             decisionHandler(.allow)
