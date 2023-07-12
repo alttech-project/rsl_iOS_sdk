@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 public protocol WebBookingDelegate {
-    func bookingSuccess(tripId: String, message: String)
+    func bookingSuccess(url: String, message: String)
     func bookingFail(message: String)
     func webViewError(message: String)
 }
@@ -117,15 +117,15 @@ extension WebBookingViewController : WKNavigationDelegate, WKUIDelegate, UIScrol
             return
         }
         print("webview url 1: \(url.absoluteString)")
-        var tripId: String? = nil
+        var tUrl: String? = nil
         var msg: String? = nil
         if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
             let queryItems = components.queryItems {
             for queryItem in queryItems {
-                if queryItem.name == "tripId" {
-                    if let trip_id = queryItem.value {
-                        print("tripId: \(trip_id)")
-                        tripId = trip_id
+                if queryItem.name == "tUrl" {
+                    if let t_url = queryItem.value {
+                        print("tUrl: \(t_url)")
+                        tUrl = t_url
                     }
                 }
                 else if queryItem.name == "msg" {
@@ -145,7 +145,7 @@ extension WebBookingViewController : WKNavigationDelegate, WKUIDelegate, UIScrol
         else if (url.absoluteString.contains("success")) {
             decisionHandler(.cancel)
             self.navigationController?.popViewController(animated: true)
-            self.delegate?.bookingSuccess(tripId: tripId ?? "", message: msg ?? "Booking success")
+            self.delegate?.bookingSuccess(url: tUrl ?? "", message: msg ?? "")
         }
         else if (url.absoluteString.contains("go_home")) {
             decisionHandler(.cancel)
