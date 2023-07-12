@@ -17,11 +17,10 @@ public protocol WebBookingDelegate {
 public class WebBookingViewController: UIViewController {
     @objc var webView : WKWebView = WKWebView()
     public var delegate : WebBookingDelegate?
-    private let urlTxt = "http://192.168.1.24:3000/" //"https://booking.royalsmartlimousine.com/?type=3"
+    private let urlTxt = "http://54.196.74.135:8088/" //"http://192.168.1.24:3000/"
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        //self.setupNavBar()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.addWebview()
     }
