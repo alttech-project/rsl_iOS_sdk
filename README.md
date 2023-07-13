@@ -34,8 +34,9 @@ class ViewController: UIViewController, WebBookingDelegate {
         self.navigationController?.pushViewController(webBookingVC, animated: true) // Navigate to web booking controller
     }
     
-    func bookingSuccess(tripId: String, message: String) {
+    func bookingSuccess(url: String, message: String) {
         // Handle booking success in this function
+        // use the url to track your booking
     }
     
     func bookingFail(message: String) {
